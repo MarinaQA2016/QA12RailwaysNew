@@ -18,11 +18,21 @@ public class SampleTestNgTest extends TestNgTestBase {
     homepage = PageFactory.initElements(driver, HomePage.class);
   }
 
-  @Test
-  public void testSearchTrainsOneWay() {
+  @Test(dataProviderClass = DataProviders.class, dataProvider = "positiveSearchTrains")
+  public void testSearchTrainsOneWay(String fromStation, String toStation) {
     driver.get(baseUrl);
-    homepage.putTextToFieldFrom("Ako");
-    homepage.putTextToFieldWhere("Ashkelon");
+    homepage.putTextToFieldFrom(fromStation);
+    homepage.putTextToFieldWhere(toStation);
+    homepage.clickSearch();
+
+    Assert.assertTrue(true);
+  }
+
+  @Test(dataProviderClass = DataProviders.class, dataProvider = "anotherPositiveSearchTrain")
+  public void anotherTestSearchTrainsOneWay(String fromStation, String toStation) {
+    driver.get(baseUrl);
+    homepage.putTextToFieldFrom(fromStation);
+    homepage.putTextToFieldWhere(toStation);
     homepage.clickSearch();
 
     Assert.assertTrue(true);
