@@ -19,7 +19,7 @@ public class SampleTestNgTest extends TestNgTestBase {
   }
 
   @Test
-  public void testHomePageHasAHeader() {
+  public void testSearchTrainsOneWay() {
     driver.get(baseUrl);
     homepage.putTextToFieldFrom("Ako");
     homepage.putTextToFieldWhere("Ashkelon");
