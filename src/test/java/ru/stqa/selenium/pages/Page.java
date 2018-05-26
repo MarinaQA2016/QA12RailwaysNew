@@ -2,6 +2,8 @@ package ru.stqa.selenium.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
@@ -26,6 +28,14 @@ public abstract class Page {
     el.click();
     el.clear();
     el.sendKeys(text);
+  }
+
+  public void waitUntilIsLoadedCustomTime(WebElement element, int time) {
+    try {
+      new WebDriverWait(driver, time).until(ExpectedConditions.visibilityOf(element));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 }

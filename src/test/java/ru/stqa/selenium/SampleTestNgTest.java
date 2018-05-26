@@ -8,33 +8,40 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import ru.stqa.selenium.pages.HomePage;
+import ru.stqa.selenium.pages.SearchResultPage;
 
 public class SampleTestNgTest extends TestNgTestBase {
 
   private HomePage homepage;
+  private SearchResultPage searchresut;
 
   @BeforeMethod
   public void initPageObjects() {
+
     homepage = PageFactory.initElements(driver, HomePage.class);
+    searchresut = PageFactory.initElements(driver, SearchResultPage.class);
   }
 
   @Test(dataProviderClass = DataProviders.class, dataProvider = "positiveSearchTrains")
   public void testSearchTrainsOneWay(String fromStation, String toStation) {
     driver.get(baseUrl);
-    homepage.putTextToFieldFrom(fromStation);
-    homepage.putTextToFieldWhere(toStation);
+    homepage.chooseStationFieldFrom(fromStation);
+    homepage.chooseStationFieldToWhere(toStation);
     homepage.clickSearch();
+    searchresut.waitUntilPageIsLoaded();
 
-    Assert.assertTrue(true);
+    Assert.assertTrue(searchresut.isFromStationCorrespondsTo(fromStation)
+            && searchresut.isToStationCorrespondsTo(toStation));
   }
 
   @Test(dataProviderClass = DataProviders.class, dataProvider = "anotherPositiveSearchTrain")
   public void anotherTestSearchTrainsOneWay(String fromStation, String toStation) {
     driver.get(baseUrl);
-    homepage.putTextToFieldFrom(fromStation);
-    homepage.putTextToFieldWhere(toStation);
+    homepage.chooseStationFieldFrom(fromStation);
+    homepage.chooseStationFieldToWhere(toStation);
     homepage.clickSearch();
 
-    Assert.assertTrue(true);
+    Assert.assertTrue(searchresut.isFromStationCorrespondsTo(fromStation)
+            && searchresut.isToStationCorrespondsTo(toStation));
   }
 }
