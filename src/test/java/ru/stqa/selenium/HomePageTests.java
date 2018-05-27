@@ -1,25 +1,24 @@
 package ru.stqa.selenium;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import ru.stqa.selenium.pages.HomePage;
-import ru.stqa.selenium.pages.SearchResultPage;
+import ru.stqa.selenium.pages.HomePageHelper;
+import ru.stqa.selenium.pages.SearchResultHelper;
 
-public class SampleTestNgTest extends TestNgTestBase {
+public class HomePageTests extends TestNgTestBase {
 
-  private HomePage homepage;
-  private SearchResultPage searchresut;
+  private HomePageHelper homepage;
+  private SearchResultHelper searchresut;
 
   @BeforeMethod
   public void initPageObjects() {
 
-    homepage = PageFactory.initElements(driver, HomePage.class);
-    searchresut = PageFactory.initElements(driver, SearchResultPage.class);
+    homepage = PageFactory.initElements(driver, HomePageHelper.class);
+    searchresut = PageFactory.initElements(driver, SearchResultHelper.class);
   }
 
   @Test(dataProviderClass = DataProviders.class, dataProvider = "positiveSearchTrains")

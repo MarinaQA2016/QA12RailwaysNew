@@ -1,5 +1,6 @@
 package ru.stqa.selenium.pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,6 +36,14 @@ public abstract class Page {
       new WebDriverWait(driver, time).until(ExpectedConditions.visibilityOf(element));
     } catch (Exception e) {
       e.printStackTrace();
+    }
+  }
+
+  public boolean exists(WebElement element) {
+    try {
+      return element.isDisplayed();
+    } catch (NoSuchElementException ignored) {
+      return false;
     }
   }
 

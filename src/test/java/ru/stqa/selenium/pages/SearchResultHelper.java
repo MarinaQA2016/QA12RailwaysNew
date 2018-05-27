@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by Inka on 26-May-18.
  */
-public class SearchResultPage extends Page {
+public class SearchResultHelper extends Page {
     @FindBy(xpath = "//a[@onclick='showTabFrom()']")
     WebElement showStationFromLink;
 
@@ -25,12 +25,12 @@ public class SearchResultPage extends Page {
     WebElement toStationInfo;
 
 
-    public SearchResultPage(WebDriver driver) {
+    public SearchResultHelper(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
 
-    public SearchResultPage waitUntilPageIsLoaded(){
+    public SearchResultHelper waitUntilPageIsLoaded(){
         this.waitUntilIsLoadedCustomTime(newSearchButton,30);
         this.waitUntilIsLoadedCustomTime(showStationFromLink,30);
         this.waitUntilIsLoadedCustomTime(showStationToLink, 30);

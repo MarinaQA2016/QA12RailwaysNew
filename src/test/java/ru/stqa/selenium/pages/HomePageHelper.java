@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Sample page
  */
-public class HomePage extends Page {
+public class HomePageHelper extends Page {
 
   @FindBy(xpath = "//input [@role ='combobox']")
   List<WebElement> fromToFieldsList;
@@ -29,7 +29,7 @@ public class HomePage extends Page {
   WebElement searchButton;
 
 
-  public HomePage(WebDriver webDriver) {
+  public HomePageHelper(WebDriver webDriver) {
     super(webDriver);
     PageFactory.initElements(driver, this);
   }
