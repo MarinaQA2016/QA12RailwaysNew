@@ -34,6 +34,13 @@ public class HomePageHelper extends Page {
     PageFactory.initElements(driver, this);
   }
 
+  public HomePageHelper waitUntilPageIsLoaded(){
+    this.waitUntilIsLoadedCustomTime(fromField, 45);
+    this.waitUntilIsLoadedCustomTime(toWhereField,45);
+    this.waitUntilIsLoadedCustomTime(searchButton,45);
+    return this;
+  }
+
   public void chooseStationFieldFrom(String stationName){
     fromField.clear();
     fromField.click();

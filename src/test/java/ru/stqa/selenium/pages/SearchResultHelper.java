@@ -31,9 +31,11 @@ public class SearchResultHelper extends Page {
     }
 
     public SearchResultHelper waitUntilPageIsLoaded(){
-        this.waitUntilIsLoadedCustomTime(newSearchButton,30);
-        this.waitUntilIsLoadedCustomTime(showStationFromLink,30);
-        this.waitUntilIsLoadedCustomTime(showStationToLink, 30);
+        this.waitUntilIsLoadedCustomTime(newSearchButton,45);
+        this.waitUntilIsLoadedCustomTime(showStationFromLink,45);
+        this.waitUntilIsLoadedCustomTime(showStationToLink, 45);
+        this.waitUntilIsLoadedCustomTime(fromStationInfo,45);
+        this.waitUntilIsLoadedCustomTime(toStationInfo,45);
         return this;
     }
 

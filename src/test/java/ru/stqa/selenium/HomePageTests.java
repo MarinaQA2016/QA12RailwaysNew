@@ -19,11 +19,14 @@ public class HomePageTests extends TestNgTestBase {
 
     homepage = PageFactory.initElements(driver, HomePageHelper.class);
     searchresut = PageFactory.initElements(driver, SearchResultHelper.class);
+    driver.get(baseUrl);
   }
 
   @Test(dataProviderClass = DataProviders.class, dataProvider = "positiveSearchTrains")
   public void testSearchTrainsOneWay(String fromStation, String toStation) {
-    driver.get(baseUrl);
+    //String fromStation = "Ako";
+    //String toStation = "Lod";
+    homepage.waitUntilPageIsLoaded();
     homepage.chooseStationFieldFrom(fromStation);
     homepage.chooseStationFieldToWhere(toStation);
     homepage.clickSearch();
@@ -35,7 +38,7 @@ public class HomePageTests extends TestNgTestBase {
 
   @Test(dataProviderClass = DataProviders.class, dataProvider = "anotherPositiveSearchTrain")
   public void anotherTestSearchTrainsOneWay(String fromStation, String toStation) {
-    driver.get(baseUrl);
+    //driver.get(baseUrl);
     homepage.chooseStationFieldFrom(fromStation);
     homepage.chooseStationFieldToWhere(toStation);
     homepage.clickSearch();
