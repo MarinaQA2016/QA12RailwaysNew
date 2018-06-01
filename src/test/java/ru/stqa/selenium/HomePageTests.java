@@ -22,13 +22,27 @@ public class HomePageTests extends TestNgTestBase {
     driver.get(baseUrl);
   }
 
-  @Test(dataProviderClass = DataProviders.class, dataProvider = "positiveSearchTrains")
+  @Test (dataProviderClass = DataProviders.class, dataProvider = "positiveSearchTrains")
   public void testSearchTrainsOneWay(String fromStation, String toStation) {
     //String fromStation = "Ako";
-    //String toStation = "Lod";
+    //String toStation = "Ashkelon";
     homepage.waitUntilPageIsLoaded();
     homepage.chooseStationFieldFrom(fromStation);
     homepage.chooseStationFieldToWhere(toStation);
+    homepage.clickSearch();
+    searchresut.waitUntilPageIsLoaded();
+
+    Assert.assertTrue(searchresut.isFromStationCorrespondsTo(fromStation)
+            && searchresut.isToStationCorrespondsTo(toStation));
+  }
+
+  @Test(dataProviderClass = DataProviders.class, dataProvider = "positiveSearchTrains")
+  public void testSearchTrainsOneWayHoverCursor(String fromStation, String toStation) {
+    // String fromStation = "Ako";
+    // String toStation = "Ashkelon";
+    homepage.waitUntilPageIsLoaded();
+    homepage.chooseStationFieldFromHoverCursor(fromStation);
+    homepage.chooseStationFieldToWhereHoverCursor(toStation);
     homepage.clickSearch();
     searchresut.waitUntilPageIsLoaded();
 

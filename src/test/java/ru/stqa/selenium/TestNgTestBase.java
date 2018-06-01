@@ -27,7 +27,8 @@ public class TestNgTestBase {
   public void initTestSuite() throws IOException {
     SuiteConfiguration config = new SuiteConfiguration();
     baseUrl = config.getProperty("site.url");
-    if (config.hasProperty("grid.url") && !"".equals(config.getProperty("grid.url"))) {
+    if (config.hasProperty("grid.url")
+            && !"".equals(config.getProperty("grid.url"))) {
       gridHubUrl = new URL(config.getProperty("grid.url"));
     }
     capabilities = config.getCapabilities();
@@ -35,6 +36,7 @@ public class TestNgTestBase {
 
   @BeforeMethod
   public void initWebDriver() {
+    System.setProperty("webdriver.firefox.bin", "C:\\Program Files\\FF 55b\\firefox.exe");
     driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
   }
 
