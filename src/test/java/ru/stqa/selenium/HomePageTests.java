@@ -1,5 +1,8 @@
 package ru.stqa.selenium;
 
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import org.testng.Assert;
@@ -13,6 +16,7 @@ public class HomePageTests extends TestNgTestBase {
 
   private HomePageHelper homepage;
   private SearchResultHelper searchresut;
+  private Alert alert;
 
   @BeforeMethod
   public void initPageObjects() {
@@ -20,6 +24,10 @@ public class HomePageTests extends TestNgTestBase {
     homepage = PageFactory.initElements(driver, HomePageHelper.class);
     searchresut = PageFactory.initElements(driver, SearchResultHelper.class);
     driver.get(baseUrl);
+    System.out.println("isAlert:" + isAlertPresent(driver));
+    safeAlertDissmiss();
+    /*alert = driver.switchTo().alert();
+    alert.dismiss();*/
   }
 
   @Test (dataProviderClass = DataProviders.class, dataProvider = "positiveSearchTrains")
@@ -59,5 +67,22 @@ public class HomePageTests extends TestNgTestBase {
 
     Assert.assertTrue(searchresut.isFromStationCorrespondsTo(fromStation)
             && searchresut.isToStationCorrespondsTo(toStation));
+  }
+
+  public boolean isAlertPresent(WebDriver wd) {
+    try {
+      wd.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  protected void safeAlertDissmiss() {
+    try {
+      driver.switchTo().alert().dismiss();
+    } catch (NoAlertPresentException e) {
+      // ничего не делаем, алерта итак нет
+    }
   }
 }

@@ -31,6 +31,7 @@ public abstract class Page {
     el.sendKeys(text);
   }
 
+
   public void waitUntilIsLoadedCustomTime(WebElement element, int time) {
     try {
       new WebDriverWait(driver, time).until(ExpectedConditions.visibilityOf(element));
